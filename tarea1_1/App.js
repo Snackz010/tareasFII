@@ -7,6 +7,11 @@
  */
 
 import React,{Component} from 'react';
+import {
+  View,
+  ScrollView,
+  SafeAreaView
+} from 'react-native'
 
 import Login from './src/login/login.js';
 import Home from './src/home/home.js'
@@ -58,8 +63,9 @@ class App extends Component {
       );
     }if(actualState.view === 'Home'){
       return(
-        <Home 
-        nombre={actualState.textinputValue}/>
+            <Home 
+            username={actualState.textinputValue}
+            press={this.btnpress}/>
       );
     }
   }
