@@ -1,19 +1,21 @@
-import Reac from 'react';
+import React from 'react';
 import {
     SafeAreaView,
     Text,
     FlatList,
     Button,
     StyleSheet,
-    TouchableOpacity
+    TouchableOpacity,
+    Platform,
 } from 'react-native';
 
-const Listado = (prop) => {
+const Listado = (props) => {
     
     const {
-        data,
+        datos,
         eventoPantallaGuardar,
-        eventoPantallaEliminar
+        eventoPantallaEliminar,
+        eventoPantallaActualizar
     } = props;
 
     return(
@@ -24,10 +26,11 @@ const Listado = (prop) => {
             onPress={eventoPantallaGuardar}
             />
             <FlatList 
-                data={data}
+                data={datos}
                 renderItem={
-                    ({item}) => <Elemento item ={item}
+                    ({item}) => <Elemento item={item}
                     eventoPantallaEliminar ={eventoPantallaEliminar}
+                    eventoPantallaActualizar = {eventoPantallaActualizar}
                     />
                 }
             />
@@ -38,12 +41,14 @@ const Listado = (prop) => {
 const Elemento = (props) => {
     const { 
         item, 
-        eventoPantallaEliminar
+        eventoPantallaEliminar,
+        eventoPantallaActualizar
     } = props;
 
     return(
         <TouchableOpacity 
         onLongPress={ () => eventoPantallaEliminar(item.key)}
+        onPress={() => eventoPantallaActualizar(item.key)}
         >
             <Text style={styles.elemento}>
                 {item.nombreAlumno}
@@ -54,7 +59,7 @@ const Elemento = (props) => {
 
 
 const styles = StyleSheet.create({
-    titulo:{
+    titulo: {
         color: 'green',
         fontSize: 18,
     },
@@ -62,11 +67,18 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 8,
         fontWeight: 'bold',
-        color: 'black',
-        height:'50',
-        backgroundColor: 'red',
-        margin:'8'
-    }
+        color: 'white',
+        height: 50,
+        ...Platform.select({
+            ios: {
+                backgroundColor: 'red',
+            },
+            android: {
+                backgroundColor: 'blue'
+            },
+        }),
+        margin: 8,
+    },
 });
 
 export default Listado; 

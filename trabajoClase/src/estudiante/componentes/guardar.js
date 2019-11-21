@@ -20,12 +20,13 @@ const Guardar = (props) => {
                 Añadir un alumno
             </Text>
             <TextInput 
-            onChangeText= {eventoNombre}
-            value={nombre}
+                onChangeText= {eventoNombre}
+                value={nombre}
             />
             <Button 
-            title='Añadir'
-            onPress={eventoGuardar}/>
+                title='Añadir'
+                onPress={eventoGuardar}
+            />
         </View>
     );
 }
