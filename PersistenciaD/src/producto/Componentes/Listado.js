@@ -17,8 +17,8 @@ const Listado = (props) => {
     const {data, eventoPantallaEliminar, eventoPantallaGuardar,eventoPantallaActualizar} = props;
         return(
             <SafeAreaView>
-                <View>
-                    <Text>Listado de productos tienda El Mango</Text>
+                <View style={Styles.tituloBG}>
+                    <Text style={Styles.titulo}>Listado de productos tienda "El Mango"</Text>
                 </View>
                 <FlatList 
                     data={data}
@@ -29,7 +29,7 @@ const Listado = (props) => {
                                     />
                     }
                 />
-                <View>
+                <View style={Styles.button}>
                     <Button title='Agregar producto' onPress={eventoPantallaGuardar}/>
                 </View>
                 
@@ -45,14 +45,14 @@ const Producto = (props) => {
     } = props;
 
     return(
-        <TouchableOpacity
+        <TouchableOpacity style={Styles.item}
             onLongPress={()=> eventoPantallaEliminar(item.key)}
             onPress={ ()=> eventoPantallaActualizar(item.key)}
         >
-            <Text>
+            <Text style={Styles.innerText}>
                 Producto: {item.nombre}
             </Text>
-            <Text>
+            <Text style={Styles.innerText}>
                 Precio: {item.precio}
             </Text>
         </TouchableOpacity>
@@ -60,5 +60,33 @@ const Producto = (props) => {
 
 }
 
+const Styles = StyleSheet.create({
+    titulo:{
+        fontSize:20,
+        alignSelf:'center',
+        marginTop:'8%',
+        color:'white'
+    },
+    tituloBG:{
+        backgroundColor:'black',
+        height:'30%'
+    },
+    button:{
+        marginLeft:'25%',
+        marginRight:'25%',
+        borderRadius:70
+    },
+    item:{
+        backgroundColor:'gray',
+        borderColor:'white',
+        borderWidth:2,
+        borderRadius:20
+    },
+    innerText:{
+        color:'white',
+        fontSize:20,
+        alignSelf:'center'
+    }
+});
 
 export default Listado;

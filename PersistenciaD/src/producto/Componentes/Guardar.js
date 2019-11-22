@@ -5,6 +5,7 @@ import {
     View,
     Text,
     Button,
+    StyleSheet
 } from 'react-native';
 
 const Guardar = (props) => {
@@ -23,18 +24,33 @@ const Guardar = (props) => {
                 Añadiendo un nuevo Producto
             </Text>
             <TextInput
+                placeholder='Nombre'
                 onChangeText={eventoNombreProducto}
                 value={nombreProducto}
             />
             <TextInput
+                placeholder='Precio'
                onChangeText={eventoPrecioProducto}
                value={precioProducto}
             />
-            <Button
-                title='Añadir' onPress={eventoGuardar}
-            />
+
+            <View style={Styles.button}>
+                <Button
+                    title='Añadir' onPress={eventoGuardar}
+                />
+            </View>
+            
         </View>
     );
 }
+
+
+const Styles = StyleSheet.create({
+    button:{
+        marginLeft:'25%',
+        marginRight:'25%',
+        borderRadius:70
+    }
+});
 
 export default Guardar;

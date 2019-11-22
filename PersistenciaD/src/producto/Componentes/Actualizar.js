@@ -3,6 +3,7 @@ import{
     View,
     TextInput,
     Button,
+    StyleSheet,
     Text,
 } from 'react-native'
 
@@ -20,20 +21,31 @@ const Actualizar = (props) => {
                 <Text>Precio actual: { precioActual }</Text>
             </View>
 
-            <TextInput 
+            <TextInput placeholder='Nuevo nombre'
                onChangeText={eventoNuevoNombre}
                value={nuevoNombre}
             />
-            <TextInput 
+            <TextInput placeholder='Nuevo precio'
                 onChangeText={eventoNuevoPrecio}
                 value={nuevoPrecio}
             />
-            <Button 
-                title='Actualizar'
-                onPress={eventoActualizar}
-            />
+            <View style={Styles.button}>
+                <Button 
+                    title='Actualizar'
+                    onPress={eventoActualizar}
+                />
+            </View>
+            
         </View>
     );
 }
+
+const Styles = StyleSheet.create({
+    button:{
+        marginLeft:'25%',
+        marginRight:'25%',
+        borderRadius:70
+    }
+});
 
 export default Actualizar;
